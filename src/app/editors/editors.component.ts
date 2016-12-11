@@ -52,7 +52,7 @@ export class EditorsComponent {
 
   loadSolution(file: FileConfig) {
     this.children.forEach(child => {
-      if (child.file === file && file.solution) {
+      if (child.file === file) {
         child.loadCode(file.solution);
       }
     });
