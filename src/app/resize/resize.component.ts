@@ -32,6 +32,7 @@ export class ResizeComponent {
   private MIN_WIDH = 400;
   private MIN_HEIGHT = 100;
   private wrapContent = false;
+  private contentHeight;
 
   private initOffset;
   private initSize;
@@ -39,8 +40,6 @@ export class ResizeComponent {
   private size;
 
   constructor(private elementRef: ElementRef) {}
-
-  private contentHeight;
 
   ngOnInit() {
     if (this.disabled) { return; }
@@ -61,7 +60,7 @@ export class ResizeComponent {
 
   getWidth() {
     if (this.isVertical()) { return; }
-    return this.size
+    return this.size;
   }
 
   getHeight() {
@@ -76,6 +75,7 @@ export class ResizeComponent {
 
   getMinHeight() {
     if (!this.isVertical() || this.isMouseDown) { return; }
+    let contentHeader = 22;
 
     this.contentHeight = this.content.nativeElement.clientHeight;
 
@@ -83,14 +83,14 @@ export class ResizeComponent {
       this.wrapContent = true;
 
     } else if (this.wrapContent === true) {
-      this.size = this.contentHeight + 22;
+      this.size = this.contentHeight + contentHeader;
     }
 
     return this.size;
   }
 
   calcSize(currentOffset) {
-    return this.initSize + currentOffset - this.initOffset
+    return this.initSize + currentOffset - this.initOffset;
   }
 
   @HostListener('mousemove', ['$event'])
