@@ -1,6 +1,6 @@
 .editors {
   position: relative;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100%;
   max-width: 100%;
   margin-right: 16px;
@@ -24,7 +24,6 @@
 
 .codeSnippet {
   display: block;
-  overflow-y: overlay;
 }
 
 .file {

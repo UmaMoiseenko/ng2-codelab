@@ -13,14 +13,14 @@
 		*ngIf="!disabled"
 		[class.overlay]="isMouseDown">
 	</div>
+</div>
+<div
+	class="spacer"
+	*ngIf="!disabled"
+	[class.spacer--vertical]="isVertical()"
+	[class.spacer--collapsed]="collapsed" >
 	<div
-		class="spacer"
-		*ngIf="!disabled"
-		[class.spacer--vertical]="isVertical()"
-		[class.spacer--collapsed]="collapsed" >
-		<div
-			class="handle"
-			[class.is-dragged]="isMouseDown">
-		</div>
+		class="handle"
+		[class.is-dragged]="isMouseDown">
 	</div>
 </div>

@@ -31,7 +31,7 @@ export class ResizeComponent {
   private isMouseDown: boolean;
   private MIN_WIDH = 400;
   private MIN_HEIGHT = 100;
-  private keepBelowContent = false;
+  private wrapContent = false;
 
   private initOffset;
   private initSize;
@@ -75,15 +75,18 @@ export class ResizeComponent {
   }
 
   getMinHeight() {
+    if (!this.isVertical() || this.isMouseDown) { return; }
+
     this.contentHeight = this.content.nativeElement.clientHeight;
 
-    if (this.contentHeight <= this.size) {
-      this.keepBelowContent = true;
+    if (this.contentHeight <= this.size && !this.wrapContent) {
+      this.wrapContent = true;
 
-    } else if (this.keepBelowContent === true && this.contentHeight > this.size) {
-      this.size = this.contentHeight;
+    } else if (this.wrapContent === true) {
+      this.size = this.contentHeight + 22;
     }
-      return Math.min(this.size, this.contentHeight);
+
+    return this.size;
   }
 
   calcSize(currentOffset) {
@@ -93,7 +96,7 @@ export class ResizeComponent {
   @HostListener('mousemove', ['$event'])
   onMouseMove(e) {
     if (!this.isMouseDown || this.disabled) { return; }
-    this.keepBelowContent = false;
+    this.wrapContent = false;
     e.preventDefault();
 
     let offset;
