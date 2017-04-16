@@ -5,19 +5,10 @@
       *ngFor="let file of visibleFiles"
       [class.is-active]="isOpenFile(file)"
       (click)="showFile(file)">
- <!-- <span class="file-{{file.type}} file">
-        {{file.type.substr(0,2)}}
-      </span> -->
-
-        {{ getFileName(file) }} {{file.readonly?' (this file is read only) ': ''}}
-
+      {{ getFileName(file) }} {{file.readonly?' (this file is read only) ': ''}}
     </div>
   </div>
-      <!-- <div *ngIf="debug && !file.readonly"
-        (click)="loadSolution(file)" style="float: right">
-        [load solution]
-      </div>
-      -->
+
   <div *ngFor="let file of visibleFiles">
     <app-editor
       class="editor"
